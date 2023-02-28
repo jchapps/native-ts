@@ -1,14 +1,20 @@
-import {View, Text} from "react-native"
-type Props = {}
+import { useEffect } from "react";
+import { View, Text, Button } from "react-native";
+import { NativeStackHeaderProps } from '@react-navigation/native-stack'
 
-const HomeScreen = (props: Props) => {
+
+function HomeScreen({ navigation }: NativeStackHeaderProps) {
+  useEffect(() => {
+    console.log("Rendering Home screen");
+  }, []);
   return (
     <View>
       <Text>
         Homescreen
+        <Button title="Planner" onPress={() => navigation.navigate("Planner")} />
       </Text>
     </View>
-  )
+  );
 }
 
-export default HomeScreen
+export default HomeScreen;
