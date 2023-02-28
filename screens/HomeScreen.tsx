@@ -6,6 +6,10 @@ import { NativeStackHeaderProps } from '@react-navigation/native-stack'
 function HomeScreen({ navigation }: NativeStackHeaderProps) {
   useEffect(() => {
     console.log("Rendering Home screen");
+
+
+    // unmounting notice
+    return () => console.log("unmounting home screen")
   }, []);
   return (
     <View>
