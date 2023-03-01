@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList } from "react-native";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import Data from "../data.json";
 import { Workout } from "../types/data";
+import WorkoutItem from "../components/WorkoutItem";
 
 function HomeScreen({ navigation }: NativeStackHeaderProps) {
   // useEffect(() => {
@@ -12,14 +13,9 @@ function HomeScreen({ navigation }: NativeStackHeaderProps) {
   //   return () => console.log("unmounting home screen")
   // }, []);
 
-  const renderItem = ({item}: {item: Workout}) => (
-    <View><Text>{item.name} | {item.difficulty}</Text></View>
-  )
-
   return (
     <View style={style.container}>
-      <Text>Homescreen</Text>
-      <FlatList data={Data as Array<Workout>} renderItem={renderItem} keyExtractor={item => item.slug} />
+      <FlatList data={Data as Array<Workout>} renderItem={WorkoutItem} keyExtractor={item => item.slug} />
     </View>
   );
 }

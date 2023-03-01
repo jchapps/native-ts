@@ -14,5 +14,5 @@ export interface SequenceItem {
   reps?: number
 }
 
-export type Difficulty = "excercise" | "stretch" | "break"
-export type SequenceType = "easy" | "normal" | "hard"
+export type SequenceType = "excercise" | "stretch" | "break"
+export type Difficulty = "easy" | "normal" | "hard"
