@@ -34,8 +34,9 @@ const style = StyleSheet.create({
     fontSize: 20,
     marginBottom: 20,
     fontWeight: "bold",
-    textAlign: "center"
-  }
+    textAlign: "center",
+    fontFamily: "Poppins",
+  },
 });
 
 export default HomeScreen;

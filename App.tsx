@@ -1,20 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import Navigation from './navigation';
+import { StatusBar } from "expo-status-bar";
+import useCachedResources from "./hooks/useCachedResources";
+import Navigation from "./navigation";
 
 export default function App() {
-  return (
-    <>
-      <Navigation/>
-      <StatusBar style="auto" />
-    </>
-  );
+  const isLoaded = useCachedResources();
+    return (
+      isLoaded && ( // Only load when fonts have been loaded so Poppins displays properly
+        <>
+          <Navigation />
+          <StatusBar style="auto" />
+        </>
+      )
+    );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
