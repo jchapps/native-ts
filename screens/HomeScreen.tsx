@@ -4,6 +4,7 @@ import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import Data from "../data.json";
 import { Workout } from "../types/data";
 import WorkoutItem from "../components/WorkoutItem";
+import {PoppinsText} from "../components/styled/PoppinsText";
 
 function HomeScreen({ navigation }: NativeStackHeaderProps) {
   // useEffect(() => {
@@ -35,7 +36,7 @@ const style = StyleSheet.create({
     marginBottom: 20,
     fontWeight: "bold",
     textAlign: "center",
-    fontFamily: "Poppins",
+
   },
 });
 
