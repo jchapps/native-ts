@@ -15,4 +15,4 @@ export interface SequenceItem {
 }
 
 export type SequenceType = "excercise" | "stretch" | "break"
-export type Difficulty = "easy" | "normal" | "hard"
+export type Difficulty = "Easy" | "Normal" | "Hard"

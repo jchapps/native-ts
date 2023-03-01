@@ -5,25 +5,13 @@ import { Workout } from "../types/data";
 
 function WorkoutItem({ item }: { item: Workout }) {
 
-  const WorkoutDifficulty = () => {
-    if (item.difficulty === "hard") {
-      "Hard 🔥"
-    }
-    if (item.difficulty === "normal") {
-      "Medium 💪"
-    }
-    if (item.difficulty === "easy") {
-      "Easy 📈"
-    }
-  }
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
         {item.name}
       </Text>
       <Text style={styles.duration}>
-      {item.difficulty} | {item.duration} Seconds
+      {item.difficulty === "Hard" ? `${item.difficulty} 🔥`  : item.difficulty} | {item.duration} Seconds
       </Text>
     </View>
   );
@@ -38,6 +26,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     marginBottom: 10,
+    backgroundColor: '#BBC2E2',
   },
   title: {
     fontSize: 15,

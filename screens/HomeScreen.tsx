@@ -15,7 +15,12 @@ function HomeScreen({ navigation }: NativeStackHeaderProps) {
 
   return (
     <View style={style.container}>
-      <FlatList data={Data as Array<Workout>} renderItem={WorkoutItem} keyExtractor={item => item.slug} />
+      <Text style={style.header}>My Workouts</Text>
+      <FlatList
+        data={Data as Array<Workout>}
+        renderItem={WorkoutItem}
+        keyExtractor={(item) => item.slug}
+      />
     </View>
   );
 }
@@ -23,7 +28,14 @@ function HomeScreen({ navigation }: NativeStackHeaderProps) {
 const style = StyleSheet.create({
   container: {
     padding: 20,
+    flex: 1,
   },
+  header: {
+    fontSize: 20,
+    marginBottom: 20,
+    fontWeight: "bold",
+    textAlign: "center"
+  }
 });
 
 export default HomeScreen;

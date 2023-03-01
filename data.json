@@ -3,7 +3,7 @@
     "slug": "abs-workout-simple-12321312",
     "name": "Abs Workout Simple!",
     "duration": 345,
-    "difficulty": "easy",
+    "difficulty": "Easy",
     "sequence": [
       {
         "slug": "pushups-213213712",
@@ -50,7 +50,7 @@
     "slug": "easy-arm-workout-12317278",
     "name": "Easy Arm Workout",
     "duration": 240,
-    "difficulty": "medium",
+    "difficulty": "Medium",
     "sequence": [
       {
         "slug": "pushups-4876812",
@@ -78,7 +78,7 @@
     "slug": "cardio-workout-1231283",
     "name": "Cardio Workout",
     "duration": 260,
-    "difficulty": "hard",
+    "difficulty": "Hard",
     "sequence": [
       {
         "slug": "jumping-jacks-1237191",
