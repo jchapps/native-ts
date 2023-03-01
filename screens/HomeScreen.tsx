@@ -1,10 +1,9 @@
 // import { useEffect } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import Data from "../data.json";
 import { Workout } from "../types/data";
 import WorkoutItem from "../components/WorkoutItem";
-import {PoppinsText} from "../components/styled/PoppinsText";
 
 function HomeScreen({ navigation }: NativeStackHeaderProps) {
   // useEffect(() => {
@@ -18,8 +17,18 @@ function HomeScreen({ navigation }: NativeStackHeaderProps) {
     <View style={style.container}>
       <Text style={style.header}>My Workouts</Text>
       <FlatList
-        data={Data as Array<Workout>}
-        renderItem={WorkoutItem}
+        data={Data as Workout[]}
+        renderItem={({ item }) => {
+          return (
+            <Pressable
+              onPress={() =>
+                navigation.navigate("WorkoutDetail", { slug: item.slug })
+              }
+            >
+              <WorkoutItem item={item} />
+            </Pressable>
+          );
+        }}
         keyExtractor={(item) => item.slug}
       />
     </View>
@@ -36,7 +45,6 @@ const style = StyleSheet.create({
     marginBottom: 20,
     fontWeight: "bold",
     textAlign: "center",
-
   },
 });
 

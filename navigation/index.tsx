@@ -3,9 +3,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import PlannerScreen from "../screens/PlannerScreen";
-import Text from "react-native";
 import { Octicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import WorkoutDetailScreen from "../screens/WorkoutDetailScreen";
 
 
 export default function Navigation() {
@@ -25,7 +25,13 @@ function RootNavigation() {
       <Stack.Screen
         name="Root"
         component={BottomTabNav}
-        options={{ headerShown: false }}
+        options={{ headerShown: false }} //removes title and title background
+      />
+      <Stack.Screen
+        name="WorkoutDetail"
+        component={WorkoutDetailScreen}
+        options={{ title: "" }} //removes text but stil leave white background
+
       />
     </Stack.Navigator>
   );
