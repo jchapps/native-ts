@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Workout } from "../types/data";
+import { secToMin } from "../utils/time";
 
 
 function WorkoutItem({ item }: { item: Workout }) {
@@ -11,7 +12,7 @@ function WorkoutItem({ item }: { item: Workout }) {
         {item.name}
       </Text>
       <Text style={styles.duration}>
-      {item.difficulty === "Hard" ? `${item.difficulty} 🔥`  : item.difficulty} | {item.duration} Seconds
+      {item.difficulty === "Hard" ? `${item.difficulty} 🔥`  : item.difficulty} | {(secToMin(item.duration))} Minutes
       </Text>
     </View>
   );
