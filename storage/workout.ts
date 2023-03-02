@@ -7,6 +7,12 @@ export const getWorkouts = async(): Promise<Workout[]> => {
   return workouts
 };
 
+export const getWorkoutBySlug = async(slug: string): Promise<Workout> =>  {
+  const workouts = await getWorkouts(); // gets array of workouts
+  const workout = workouts.filter(workout => workout.slug === slug)[0] //compares iteration slug to slug and gets first object in array
+  return workout //returns matching workout
+}
+
 export const initWorkouts = async (): Promise<boolean> => {
   const hasWorkouts = await containsKey("workout-data");
   if (!hasWorkouts) {

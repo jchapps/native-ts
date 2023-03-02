@@ -1,24 +1,27 @@
-import { View, Text, StyleSheet} from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
-
+import { useWorkoutBySlug } from "../hooks/useWorkoutBySlug";
+import { PressableText } from "../components/styled/PressableText";
 
 // getting slug to exist on object
 type ParamDetails = {
   route: {
     params: {
-      slug: string
-    }
-  }
-}
+      slug: string;
+    };
+  };
+};
 // overwriting native stackheaderprops with our own paramdetails to include slug
-type Navigation = NativeStackHeaderProps & ParamDetails
+type Navigation = NativeStackHeaderProps & ParamDetails;
 
 function WorkoutDetailScreen({ route }: Navigation) {
-
+  const workout = useWorkoutBySlug(route.params.slug);
 
   return (
     <View style={style.container}>
-      <Text style={style.header}>{route.params.slug}</Text>
+      {/* workout is undefined initially so we need to use workout?.name */}
+      <Text style={style.header}>{workout?.name}</Text>
+      <PressableText text='Show Details' onPress={() => alert('Show modal here')}/>
     </View>
   );
 }
