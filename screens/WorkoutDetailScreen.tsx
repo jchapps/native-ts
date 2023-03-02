@@ -1,7 +1,9 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import { useWorkoutBySlug } from "../hooks/useWorkoutBySlug";
+import { Modal } from "../components/styled/Modal";
 import { PressableText } from "../components/styled/PressableText";
+import { formatSecs } from "../utils/time";
 
 // getting slug to exist on object
 type ParamDetails = {
@@ -19,12 +21,29 @@ function WorkoutDetailScreen({ route }: Navigation) {
 
   return (
     <View style={style.container}>
-      {/* workout is undefined initially so we need to use workout?.name */}
       <Text style={style.header}>{workout?.name}</Text>
-      <PressableText text='Show Details' onPress={() => alert('Show modal here')}/>
+      <Modal
+        activator={({handleOpen}) =>
+          <PressableText
+            onPress={handleOpen}
+            text="More Details"
+          />
+        }
+      >
+        <View>
+          {
+            workout?.sequence.map(seq =>
+              <Text key={seq.slug}>{seq.name} - {seq.type} - {formatSecs(seq.duration)}</Text>
+              )
+          }
+        </View>
+      </Modal>
     </View>
-  );
+  )
 }
+
+
+
 
 const style = StyleSheet.create({
   container: {

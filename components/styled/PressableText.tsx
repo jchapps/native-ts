@@ -1,4 +1,4 @@
-import { Pressable, Text, PressableProps } from "react-native/types";
+import { Pressable, Text, PressableProps } from "react-native";
 
 export function PressableText(props: PressableProps & {text: string}) {
   return (
