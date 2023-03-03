@@ -6,6 +6,9 @@ import { PressableText } from "../components/styled/PressableText";
 import { formatSecs } from "../utils/time";
 import { FontAwesome } from "@expo/vector-icons";
 import WorkoutItem from "../components/WorkoutItem";
+import { useEffect, useState } from "react";
+import { SequenceItem } from "../types/data";
+import { useCountDown } from "../hooks/useCountDown";
 
 // getting slug to exist on object
 type ParamDetails = {
@@ -19,7 +22,21 @@ type ParamDetails = {
 type Navigation = NativeStackHeaderProps & ParamDetails;
 
 function WorkoutDetailScreen({ route }: Navigation) {
+  const [sequence, setSequence] = useState<SequenceItem[]>([]);
+  const [trackerIdx, setTrackerIdx] = useState(-1);
+
+
+
   const workout = useWorkoutBySlug(route.params.slug);
+
+
+  const countDown = useCountDown(trackerIdx, trackerIdx>= 0 ? sequence[trackerIdx].duration: -1)
+
+
+  const addItemToSequence = (idx: number) => {
+    setSequence([...sequence, workout!.sequence[idx]]); // ! works instead of ? because data will defintiley be here
+    setTrackerIdx(idx);
+  };
 
   if (!workout) {
     return null;
@@ -27,7 +44,7 @@ function WorkoutDetailScreen({ route }: Navigation) {
 
   return (
     <View style={style.container}>
-      <WorkoutItem item={workout} childrenStyle={{marginTop: 10}}>
+      <WorkoutItem item={workout} childrenStyle={{ marginTop: 10 }}>
         <Modal
           activator={({ handleOpen }) => (
             <PressableText onPress={handleOpen} text="More Details" />
@@ -47,6 +64,15 @@ function WorkoutDetailScreen({ route }: Navigation) {
           </View>
         </Modal>
       </WorkoutItem>
+      <View>
+        {sequence.length === 0 && (
+          <FontAwesome
+            name="play-circle-o"
+            size={100}
+            onPress={() => addItemToSequence(0)}
+          />
+        )}
+      </View>
     </View>
   );
 }
