@@ -32,6 +32,15 @@ function WorkoutDetailScreen({ route }: Navigation) {
 
   const countDown = useCountDown(trackerIdx, trackerIdx>= 0 ? sequence[trackerIdx].duration: -1)
 
+  useEffect(() => {
+    if (!workout) {return}
+
+    if (trackerIdx === workout.sequence.length - 1) {return} //reached the end of workout sequences
+
+    if(countDown === 0) {
+      addItemToSequence(trackerIdx + 1)
+    }
+  }, [countDown])
 
   const addItemToSequence = (idx: number) => {
     setSequence([...sequence, workout!.sequence[idx]]); // ! works instead of ? because data will defintiley be here
@@ -72,6 +81,13 @@ function WorkoutDetailScreen({ route }: Navigation) {
             onPress={() => addItemToSequence(0)}
           />
         )}
+        {sequence.length > 0 && countDown >= 0 &&
+        <View>
+          <Text>
+            {countDown}
+          </Text>
+        </View>
+        }
       </View>
     </View>
   );
