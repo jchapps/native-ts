@@ -9,6 +9,8 @@ import WorkoutItem from "../components/WorkoutItem";
 import { useEffect, useState } from "react";
 import { SequenceItem } from "../types/data";
 import { useCountDown } from "../hooks/useCountDown";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 // getting slug to exist on object
 type ParamDetails = {
@@ -46,7 +48,12 @@ function WorkoutDetailScreen({ route }: Navigation) {
   }, [countDown]);
 
   const addItemToSequence = (idx: number) => {
-    const newSequence = [...sequence, workout!.sequence[idx]];
+    let newSequence = [];
+    if (idx > 0) { // push more items
+      newSequence = [...sequence, workout!.sequence[idx]] // existing items and new sequence
+    } else {
+      newSequence = [workout!.sequence[idx]] // if no data
+    }
     setSequence(newSequence); // ! works instead of ? because data will defintiley be here
     setTrackerIdx(idx);
     start(newSequence[idx].duration);
@@ -81,30 +88,37 @@ function WorkoutDetailScreen({ route }: Navigation) {
           </View>
         </Modal>
       </WorkoutItem>
-      <View style={style.centerView}>
-        {sequence.length === 0 ? (
-          <FontAwesome
-            name="play-circle-o"
-            size={100}
-            onPress={() => addItemToSequence(0)}
-          />
-        ) : isRunning ? (
-          <FontAwesome name="stop-circle-o" size={100} onPress={() => stop()} />
-        ) : (
-          <FontAwesome
-            name="play-circle-o"
-            size={100}
-            onPress={() => {
-              if (hasReachedEnd) {
-                console.log("restart now function");
-              } else {
-                start(countDown);
-              }
-            }}
-          />
-        )}
+      <View style={style.counterUI}>
+        <View style={style.centerItem}>
+          {sequence.length === 0 ? (
+            <FontAwesome
+              name="play-circle-o"
+              size={100}
+              onPress={() => addItemToSequence(0)}
+            />
+          ) : isRunning ? (
+            <FontAwesome
+              name="stop-circle-o"
+              size={100}
+              onPress={() => stop()}
+            />
+          ) : (
+            <MaterialCommunityIcons
+              name="restart"
+              color="black"
+              size={100}
+              onPress={() => {
+                if (hasReachedEnd) {
+                  addItemToSequence(0)
+                } else {
+                  start(countDown);
+                }
+              }}
+            />
+          )}
+        </View>
         {sequence.length > 0 && countDown >= 0 && (
-          <View>
+          <View style={style.centerItem}>
             <Text style={{ fontSize: 35 }}>{countDown}</Text>
           </View>
         )}
@@ -136,11 +150,15 @@ const style = StyleSheet.create({
   sequence: {
     alignItems: "center",
   },
-  centerView: {
+  counterUI: {
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
     marginBottom: 20,
+  },
+  centerItem: {
+    flex: 1,
+    alignItems: "center",
   },
 });
 
