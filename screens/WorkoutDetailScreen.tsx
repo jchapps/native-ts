@@ -73,7 +73,7 @@ function WorkoutDetailScreen({ route }: Navigation) {
           </View>
         </Modal>
       </WorkoutItem>
-      <View>
+      <View style={style.centerView}>
         {sequence.length === 0 && (
           <FontAwesome
             name="play-circle-o"
@@ -83,7 +83,7 @@ function WorkoutDetailScreen({ route }: Navigation) {
         )}
         {sequence.length > 0 && countDown >= 0 &&
         <View>
-          <Text>
+          <Text style={{fontSize: 35}}>
             {countDown}
           </Text>
         </View>
@@ -107,6 +107,12 @@ const style = StyleSheet.create({
   sequence: {
     alignItems: "center",
   },
+  centerView: {
+    flexDirection: 'row',
+    justifyContent: "space-around",
+    alignItems: "center",
+    marginBottom: 20
+  }
 });
 
 export default WorkoutDetailScreen;
