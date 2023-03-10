@@ -1,13 +1,19 @@
-import { View, Text, Button } from "react-native";
+import { View, Text } from "react-native";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
-import WorkoutForm from "../components/WorkoutForm";
+import WorkoutForm, { ExcerciseForm } from "../components/WorkoutForm";
 import { StyleSheet } from "react-native";
 
 function PlannerScreen({ navigation }: NativeStackHeaderProps) {
+
+  const handleFormSubmit = (form: ExcerciseForm) => {
+    alert(`${form.name} - ${form.duration}`)
+  }
+
+
   return (
     <View style={style.container}>
       <Text>
-        <WorkoutForm />
+        <WorkoutForm onSubmit={handleFormSubmit}/>
       </Text>
     </View>
   );
