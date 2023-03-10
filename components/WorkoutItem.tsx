@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     marginBottom: 10,
-    backgroundColor: "#BBC2E2",
+    backgroundColor: "#D6ED17FF",
   },
   title: {
     fontSize: 15,

@@ -16,7 +16,7 @@ export function useCountDown(idx: number, initialCount: number = -1) {
           console.log(count);
           return count - 1;
         });
-      }, 10); // runs every second
+      }, 1000); // runs every second
     }
 
     return cleanup; // runs on dismount - cleanup function
