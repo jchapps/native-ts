@@ -13,7 +13,7 @@ type WorkoutProps = {
 };
 
 export default function WorkoutForm({ onSubmit }: WorkoutProps) {
-  const { control } = useForm();
+  const { control, handleSubmit } = useForm();
 
   return (
     <View style={style.container}>
@@ -33,6 +33,12 @@ export default function WorkoutForm({ onSubmit }: WorkoutProps) {
           />
 
           }
+        />
+        <PressableText
+        text="submit"
+        onPress={handleSubmit((data) => {onSubmit(data as ExcerciseForm)})} // handlesubmit hook comes from package
+
+
         />
       </View>
     </View>

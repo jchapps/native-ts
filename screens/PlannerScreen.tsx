@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 
 function PlannerScreen({ navigation }: NativeStackHeaderProps) {
   const handleFormSubmit = (form: ExcerciseForm) => {
-    alert(`${form.name} - ${form.duration}`);
+    alert(`${form.name}`);
   };
 
   return (
