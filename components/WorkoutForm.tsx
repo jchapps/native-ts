@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import { PressableText } from "./styled/PressableText";
-import {useForm, Controller} from 'react-hook-form'
+import { useForm, Controller } from "react-hook-form";
 
 export type ExcerciseForm = {
   name: string;
@@ -9,40 +9,32 @@ export type ExcerciseForm = {
 };
 
 type WorkoutProps = {
-  onSubmit: (form: ExcerciseForm) => void
-}
+  onSubmit: (form: ExcerciseForm) => void;
+};
 
 export default function WorkoutForm({ onSubmit }: WorkoutProps) {
-  const [form, setForm] = useState({
-    name: "",
-    duration: "",
-  });
-
-  const onChange = (name: string) => (text: string) => {
-    // function calling function
-
-    setForm({
-      ...form,
-      [name]: text, //will replace name or duration
-    });
-  };
+  const { control } = useForm();
 
   return (
     <View style={style.container}>
       <Text>Form</Text>
       <View>
-        <TextInput
-          onChangeText={onChange("name")}
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          name="name"
+          render={({ field: {onChange, value}}) =>
+          <TextInput
+          onChangeText={onChange}
+          value={value}
           style={style.input}
-          value={form.name}
-        />
-        <TextInput
-          onChangeText={onChange("duration")}
-          style={style.input}
-          value={form.duration}
+          />
+
+          }
         />
       </View>
-      <PressableText text="Submit" onPress={() => onSubmit(form)} />
     </View>
   );
 }
@@ -57,6 +49,6 @@ const style = StyleSheet.create({
     height: 40,
     margin: 12,
     borderWidth: 1,
-    padding: 10,
+    padding: 10
   },
 });
