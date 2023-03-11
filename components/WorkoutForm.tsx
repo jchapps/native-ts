@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import { PressableText } from "./styled/PressableText";
+import {useForm, Controller} from 'react-hook-form'
 
 export type ExcerciseForm = {
   name: string;
